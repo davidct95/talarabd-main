@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>{{ data.componente.nombre }}</h1>
+<div mat-dialog-content>
+  <div class="modal-componentes">
+    <span>Componente:</span>
+    <div>
+      <input type="text" [(ngModel)]="data.componente.componente" placeholder="Componente">
+    </div>
+  </div>
+  <div class="modal-componentes">
+    <span>Nombre:</span>
+    <div>
+      <input type="text" [(ngModel)]="data.componente.nombre" placeholder="Nombre">
+    </div>
+    
+  </div>
+  <div class="modal-componentes">
+    <span>Sector:</span>
+    <div>
+      <input type="text" [(ngModel)]="data.componente.sector" placeholder="Sector">
+    </div>
+  </div>
+  <div class="modal-componentes">
+    <span>Paquete:</span>
+    <div>
+      <input type="text" [(ngModel)]="data.componente.paquete" placeholder="Paquete">
+    </div>
+  </div>
+  <div class="modal-componentes">
+    <span>Código:</span>
+    <div>
+      <input type="text" [(ngModel)]="data.componente.codigo" placeholder="Código">
+    </div>
+  </div>
+  <div class="modal-componentes">
+    <span>Enlace BIM:</span>
+    <div>
+      <input type="text" [(ngModel)]="data.componente.enlace_bim" placeholder="Enlace BIM">
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions id="buttons-dialog">
+  <button mat-button (click)="onSave()" id="guardar-modal">Guardar</button>
+  <button mat-button (click)="onClose()" id="cerrar-modal">Cerrar</button>
+</div>

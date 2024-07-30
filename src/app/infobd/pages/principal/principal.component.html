@@ -1,0 +1,19 @@
+<div class="container-opciones">
+  <div class="boton-home"><img class="img-home" src="../../../../assets/img/home.png" [routerLink]="['/talara']"></div>
+  <input type="text" class="search-input" placeholder="Ingrese un componente o nombre" (keyup)="onKeyPress(txtInput.value)" #txtInput>
+</div>
+
+<div id="fila">
+    <div id="colum-1">
+            <app-tabla-componentes
+                (datoEmitido)="tablaPropiedades.onRegistroSeleccionado($event)" (registroEliminado)="mapa.actualizarMapa()">
+            </app-tabla-componentes>
+
+        <div class="tabla2">
+            <app-tabla-propiedades #tablaPropiedades></app-tabla-propiedades>
+        </div>
+    </div>
+    <div id="colum-2">
+            <app-mapa #mapa></app-mapa>
+    </div>
+</div>

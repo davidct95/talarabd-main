@@ -1,0 +1,40 @@
+<div id="tabla-container">
+    <table class="table table-striped" id="tabla-componentes">
+        <thead>
+            <tr>
+                <th>Componente</th>
+                <th>Nombre</th>
+                <th>Sector</th>
+                <th>Paquete</th>
+                <th>Codigo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let componente of filteredComponentes"
+                [class.selected]="selectedComponentId === componente.id"
+                (click)="actualizarURL(componente.id); selectComponent(componente.id)">
+                <ng-container *ngIf="componente.paquete === paqueteId">
+                  <td>{{ componente.componente | titlecase}}</td>
+                  <td>{{ componente.nombre | titlecase}}</td>
+                  <td>{{ componente.sector }}</td>
+                  <td>{{ componente.paquete }}</td>
+                  <td>{{ componente.codigo }}</td>
+                  <td id="btn-edit">
+                      <a [href]="componente.enlace_bim" target="_blank">
+                          <div class="img-btn" id="img-link"><img src="../../../../assets/img/web.png" alt="link" /></div>
+                      </a>
+                      <div>
+                          <div class="img-btn" id="img-editar"><img src="../../../../assets/img/editar.png" alt="editar"
+                                  (click)="openModal(componente)" /></div>
+                      </div>
+
+                      <div (click)="eliminarRegistro(componente.id)" class="img-btn" id="img-borrar"><img
+                              src="../../../../assets/img/borrar.png" alt="borrar" />
+                      </div>
+                  </td>
+              </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</div>

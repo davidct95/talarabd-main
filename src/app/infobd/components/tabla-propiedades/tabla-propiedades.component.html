@@ -1,0 +1,57 @@
+<div id="buttons-propiedades">
+  <app-botone-propiedades (registroSeleccionado)="onRegistroSeleccionado($event)"></app-botone-propiedades>
+  <ng-container *ngIf="buttonUpd == false">
+    <button (click)="changeValueButton()">Editar</button>
+  </ng-container>
+  <ng-container *ngIf="buttonUpd" >
+    <div>
+      <button (click)="actualizarPropiedades(claves, valores)">Guardar</button>
+      <button (click)="changeValueButton()">Cancelar</button>
+    </div>
+  </ng-container>
+
+</div>
+
+
+<div id="tabla-container">
+  <table *ngIf="claves && claves.length >= 22" class="table table-striped" id="tabla-propiedades">
+    <thead>
+      <tr>
+        <th>Identicación del parámetro</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="seccionActual">
+        <ng-container *ngFor="let i of seccionActual.rangoIndices">
+          <tr>
+            <td>{{ claves[i] | titlecase}}</td>
+            <td></td>
+            <!-- Cambios aquí: mostrar input editable solo cuando se presione el botón "Upd" -->
+            <td *ngIf="buttonUpd">
+              <input type="text" [(ngModel)]="valores[i]">
+            </td>
+            <td *ngIf="!buttonUpd">{{ valores[i] }}</td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+  <table *ngIf="!claves" class="table table-striped" id="tabla-propiedades">
+    <thead>
+      <tr>
+        <th>Identicación del parámetro</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="height: 5px;">
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
