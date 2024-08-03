@@ -3,16 +3,13 @@
   <app-subir-archivos></app-subir-archivos>
 
   <div class="cuerpo-inicio">
-    <div class="botones-inicio">
-      <button class="boton-paquetes" *ngFor="let paquete of paquetes" (click)="navegarPaquete(paquete)">
-        Paquete {{ paquete }}
-      </button>
-    </div>
 
-    <img class="img-inicio" src="../../../../assets/img/img-inicio.jpeg" alt="">
+    <router-outlet></router-outlet>
+
+    <div id="map2"></div>
+
   </div>
 
 
 
 </div>
-

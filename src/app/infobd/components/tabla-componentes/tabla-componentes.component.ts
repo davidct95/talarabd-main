@@ -95,6 +95,7 @@ export class TablaComponentesComponent implements OnInit {
   actualizarURL(nuevoValor: string) {
     // Obtiene la URL actual y agrega el parámetro 'id' con el nuevo valor
     const url = this.router.url.split('?')[0]; // Obtiene la URL sin los parámetros actuales
+    console.log(url);
     this.router.navigate([url], { queryParams: { id: nuevoValor }, queryParamsHandling: 'merge' });
   }
 

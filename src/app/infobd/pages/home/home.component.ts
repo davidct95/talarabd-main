@@ -1,7 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
 import { BdserviceService } from '../../services/bdservice.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ComponentsService } from '../../services/components.service';
+
+import * as L from 'leaflet';
+import proj4 from 'proj4';
+import { BehaviorSubject, merge } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,35 +17,59 @@ export class HomeComponent implements OnInit{
 
   paqueteId: number = 0;
 
-  public paquetes: number[] = [];
+  map?: L.Map;
 
-  constructor( private bdService: BdserviceService,
-                private router: Router,
-                private cdr: ChangeDetectorRef,
+
+  constructor(  private router: Router,
+                private bdService: BdserviceService,
                 private componentsService: ComponentsService) {}
 
   ngOnInit(): void {
-    this.cargarPaquetes();
 
-    this.componentsService.archivoSubido$.subscribe(() => {
-      this.cargarPaquetes(); // Actualiza la lista de paquetes cuando se sube un archivo
-    });
-  }
+    this.map = L.map('map2', {
+      dragging: false,
+      zoomControl: false,      // Elimina el control de zoom
+      attributionControl: false, // Elimina la atribución
+      scrollWheelZoom: false, // Desactiva el zoom con rueda de ratón
+      doubleClickZoom: false, // Desactiva el zoom con doble clic
+      boxZoom: false,         // Desactiva el zoom con cuadro
+      keyboard: false,        // Desactiva el control con teclado
+      touchZoom: false        // Desactiva el zoom táctil
+    }).setView([0, 0], 2);
 
-  cargarPaquetes() {
-    this.bdService.getComponente().subscribe(data => {
-      this.paquetes = []; // Reinicia la lista de paquetes
-      for (let obj of data) {
-        if (!this.paquetes.includes(obj.paquete)) {
-          this.paquetes.push(obj.paquete);
-          this.paquetes.sort((a: any, b: any) => a - b);
-        }
+    L.tileLayer(
+      'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}',
+      {
+        maxZoom: 19,
+        attribution: 'Data by <a href="https://openstreetmap.org">OpenStreetMap contributors</a>'
       }
-      this.cdr.detectChanges(); // Forzar la detección de cambios si es necesario
+    ).addTo(this.map)
+
+    proj4.defs('EPSG:32717', '+proj=utm +zone=17 +south +datum=WGS84 +units=m +no_defs');
+
+
+    this.bdService.getSectores().subscribe( data => {
+      const sectores = L.Proj.geoJson( data, {
+
+      }).addTo(this.map!);
+
+      const bounds = sectores.getBounds();
+
+      this.map?.fitBounds(bounds);
+
+      sectores.on('click', (e) => {
+        this.componentsService.actualizarSectorClicado(e.layer.feature.properties.Nombre.toLowerCase().replace(/ /g, ""));
+
+        this.componentsService.getSectorClicado().subscribe( sector => {
+          this.router.navigate([`talara/${sector}`])
+        })
+      });
     });
+
+
   }
 
-  navegarPaquete( paqueteId: number ) {
-    const url = this.router.navigate([`bd/${paqueteId}`]);
-  }
+
+
+
 }

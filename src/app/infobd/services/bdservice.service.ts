@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class BdserviceService {
   //https://katydid-fond-fish.ngrok-free.app/talara/home
   //https://romantic-wise-dingo.ngrok-free.app/talara/home
 
-  private apiUrl: string = 'https://katydid-fond-fish.ngrok-free.app/talara/home'
+  private apiUrl: string = 'http://localhost:8080/home'
 
   constructor( private http: HttpClient){ }
 
@@ -68,5 +69,9 @@ export class BdserviceService {
     headers.append('Content-Type', 'multipart/form-data')
 
     return this.http.post(url, formData, {headers: headers, responseType: 'text'})
+  }
+
+  getSectores(): Observable<any> {
+    return this.http.get<any>('assets/geojson/sectores.geojson')
   }
 }

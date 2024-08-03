@@ -10,6 +10,8 @@ export class ComponentsService {
   private paqueteId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private debouncer: Subject<string> = new Subject<string>();
 
+  $sectorClicado: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   archivoSubido$ = this.archivoSubidoSubject.asObservable();
 
   constructor() { }
@@ -22,15 +24,23 @@ export class ComponentsService {
     this.paqueteId.next(paqueteId);
   }
 
-  getPaqueteId(): Observable<number> {
-    return this.paqueteId.asObservable();
-  }
-
   actualizarDebouncer( termino:string ) {
     this.debouncer.next( termino );
   }
 
+  actualizarSectorClicado( sector: string ) {
+    this.$sectorClicado.next( sector )
+  }
+
   getValueDebouncer(): Observable<string> {
     return this.debouncer.asObservable();
+  }
+
+  getSectorClicado(): Observable<string> {
+    return this.$sectorClicado.asObservable();
+  }
+
+  getPaqueteId(): Observable<number> {
+    return this.paqueteId.asObservable();
   }
 }

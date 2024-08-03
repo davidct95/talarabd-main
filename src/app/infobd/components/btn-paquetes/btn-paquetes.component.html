@@ -1,0 +1,15 @@
+<p>{{ sector }}</p>
+
+<div class="botones-inicio">
+
+  <ng-container *ngFor="let p of paquetes">
+    <ng-container *ngIf="sector === p.sector">
+      <button class="boton-paquetes" (click)="navegarPaquete(p.paquete)">
+
+        Paquete {{ p.paquete }}
+
+      </button>
+    </ng-container>
+  </ng-container>
+
+</div>

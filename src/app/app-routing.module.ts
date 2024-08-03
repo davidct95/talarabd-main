@@ -3,18 +3,14 @@ import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: 'talara',
-    loadChildren: () => import('./infobd/infobd.module').then(m => m.InfobdModule)
+    path: '',
+    loadChildren: () => import('./infobd/infobd.module').then(m => m.InfobdModule),
   },
   {
     path: '',
-    redirectTo: 'talara',
+    redirectTo: '',
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: 'talara'
-  }
 ]
 
 @NgModule({

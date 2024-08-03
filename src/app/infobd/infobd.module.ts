@@ -14,6 +14,7 @@ import { MapaComponent } from './components/mapa/mapa.component';
 import { SubirArchivosComponent } from './components/subir-archivos/subir-archivos.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InfobdRoutingModule } from './infobd-routing.module';
+import { BtnPaquetesComponent } from './components/btn-paquetes/btn-paquetes.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InfobdRoutingModule } from './infobd-routing.module';
     MapaComponent,
     SubirArchivosComponent,
     HomeComponent,
+    BtnPaquetesComponent,
   ],
   exports: [
     TablaComponentesComponent,
