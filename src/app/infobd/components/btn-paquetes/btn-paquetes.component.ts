@@ -23,11 +23,10 @@ export class BtnPaquetesComponent implements OnInit{
    ) {}
 
   ngOnInit(): void {
+
     this.activatedRoute.paramMap.subscribe(params => {
       const rutaSector = params.get('sector')
       this.sector = parseInt(rutaSector!.slice(rutaSector!.length - 1, rutaSector!.length));
-
-      console.log('Sector actualizado:', this.sector);
     })
 
     this.cargarPaquetes();
@@ -60,7 +59,6 @@ export class BtnPaquetesComponent implements OnInit{
 
       }
 
-      console.log(this.paquetes)
       this.cdr.detectChanges(); // Forzar la detección de cambios si es necesario
     });
   }

@@ -284,6 +284,11 @@ img {
  width: 100vw;
 }
 
+.titulo-sector {
+  text-align: center;
+  font-weight: bold;
+}
+
 .botones-inicio {
   width: 25vw;
   height: 580px;
@@ -291,6 +296,22 @@ img {
   margin-top: 30px;
   margin-left: 100px;
 }
+
+.mensaje-inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25vw;
+  height: 580px;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.mensaje-inicio p {
+  font-size: 30px;
+  color: red;
+}
+
 
 .boton-paquetes {
   display: block;
@@ -359,4 +380,67 @@ img {
   width: 1000px;
   height: 600px;
   margin-right: 100px;
+  box-shadow: 0 0 30px rgba(0,0,0, 0.5);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  line-height: 1.5;
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 120px;
+}
+
+.legend i {
+  width: 20px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.position-minimap{
+  position: fixed;
+  bottom: 150px;
+  right: 110px;
+  z-index: 1000;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.titulo-minimap{
+  display: flex;
+  background-color: white;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 15px;
+  border: 1px solid black;
+}
+
+#mini-map{
+  width: 250px;
+  height: 180px;
+  border: 1px solid black;
+}
+
+.etiqueta-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: bold;
+}
+
+.etiqueta-tooltip-map2{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: bold;
+  font-size: 15px;
+  color: white !important;
 }

@@ -14,7 +14,7 @@
             <tr *ngFor="let componente of filteredComponentes"
                 [class.selected]="selectedComponentId === componente.id"
                 (click)="actualizarURL(componente.id); selectComponent(componente.id)">
-                <ng-container *ngIf="componente.paquete === paqueteId">
+                <ng-container *ngIf="componente.paquete === paqueteId && componente.sector === sector">
                   <td>{{ componente.componente | titlecase}}</td>
                   <td>{{ componente.nombre | titlecase}}</td>
                   <td>{{ componente.sector }}</td>

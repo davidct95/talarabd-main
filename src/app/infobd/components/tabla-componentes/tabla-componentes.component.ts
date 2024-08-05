@@ -30,6 +30,7 @@ export class TablaComponentesComponent implements OnInit {
   selectedComponentId: string | null = null;
 
   paqueteId: number = 0;
+  sector: number = 0;
 
   constructor(private bdservices: BdserviceService,
               private router: Router,
@@ -53,6 +54,11 @@ export class TablaComponentesComponent implements OnInit {
         this.paqueteId =  parseInt(params.get('paqueteId')!);
         this.componetsService.actualizarPaqueteId(parseInt(params.get('paqueteId')!));
         console.log(params)
+    });
+
+    this.activatedRoute.queryParams.subscribe( params => {
+      const queryParamSector = params['sc'];
+      this.sector = parseInt( queryParamSector.slice(queryParamSector.length - 1 , queryParamSector.length) )
     })
 
     this.componetsService.archivoSubido$.subscribe(() => {
@@ -73,6 +79,7 @@ export class TablaComponentesComponent implements OnInit {
     this.bdservices.getComponente()
       .subscribe((resp) => {
         this.componentes = resp;
+        console.log(this.componentes);
         this.filteredComponentes = [...this.componentes];
 
         const jsonOrdenado = this.filteredComponentes.sort(function (a, b) {
@@ -83,7 +90,6 @@ export class TablaComponentesComponent implements OnInit {
           if (componenteA > componenteB) { return 1; }
           return 0;
         });
-        console.log(this.componentes)
       });
   }
 

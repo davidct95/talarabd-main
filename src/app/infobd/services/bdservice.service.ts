@@ -72,6 +72,10 @@ export class BdserviceService {
   }
 
   getSectores(): Observable<any> {
-    return this.http.get<any>('assets/geojson/sectores.geojson')
+    return this.http.get<any>('assets/geojson/sectores.geojson');
+  }
+
+  getProvincias(): Observable<any> {
+    return this.http.get<any>('assets/geojson/provincias.geojson');
   }
 }

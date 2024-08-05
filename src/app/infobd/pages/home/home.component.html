@@ -4,9 +4,24 @@
 
   <div class="cuerpo-inicio">
 
+    <ng-container *ngIf="existeSector === false; else btnPaquetes">
+      <div class="mensaje-inicio"><p>Haz clic en un sector del mapa</p></div>
+    </ng-container>
+
+    <ng-template #btnPaquetes>
+      <ng-container ></ng-container>
+    </ng-template>
+
+
     <router-outlet></router-outlet>
 
     <div id="map2"></div>
+
+    <div class="position-minimap">
+      <div class="titulo-minimap">Ubicación Provincial</div>
+      <div id="mini-map"></div>
+    </div>
+
 
   </div>
 

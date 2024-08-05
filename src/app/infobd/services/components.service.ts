@@ -10,7 +10,7 @@ export class ComponentsService {
   private paqueteId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private debouncer: Subject<string> = new Subject<string>();
 
-  $sectorClicado: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  $sectorClicado: BehaviorSubject<string | any> = new BehaviorSubject<string | any>('');
 
   archivoSubido$ = this.archivoSubidoSubject.asObservable();
 
@@ -28,7 +28,7 @@ export class ComponentsService {
     this.debouncer.next( termino );
   }
 
-  actualizarSectorClicado( sector: string ) {
+  actualizarSectorClicado( sector: string | any ) {
     this.$sectorClicado.next( sector )
   }
 
